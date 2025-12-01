@@ -31,76 +31,76 @@ export default function ProjectsCarousel() {
     {
       img: proyecto1,
       title: "Propuesta Tottus Quilicura",
-      desc: "Modelación MEP / Coordinación BIM / Detalles constructivos."
+      desc: "Imágenes  Render."
     },
     {
       img: proyecto2,
       title: "Propuesta Comas Collique",
-      desc: "Coordinación BIM / Modelación 3D / Análisis estructural."
+      desc: "Modelos  3d  BIM"
     },
     {
       img: proyecto3,
       title: "Propuesta Comas Collique",
-      desc: "Diseño industrial / Dibujo técnico / Prototipado."
+      desc: "Detalles  de arquitectura en Retail"
     },
     {
       img: proyecto4,
       title: "Propuesta Mall Colombia",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Propuestas Cabidas-Retail"
       
     },
      {
       img: proyecto5,
       title: "Propuesta Fachada Mall La Serena",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Detalles Constructivos-Fachadas"
       
     },
          {
       img: proyecto6,
       title: "Tottus Walker Martinez - Frutas y Verduras",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Supermercados-Organización  de  Proyectos"
       
     },
              {
       img: proyecto7,
       title: "Tottus Walker Martinez - Venta Asistida",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Supermercados-Especiﬁcaciones  técnicas"
       
     },
              {
       img: proyecto8,
       title: "Tottus Walker Martinez - Isometrica",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Isometricas"
       
     },
                  {
       img: proyecto9,
       title: "Fachada Acceso Alameda Mall Asia Pacifico",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Modificación de Proyectos"
       
     },
                  {
       img: proyecto10,
       title: "Metro de Santiago",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Desarrollo de arquitectura"
       
     },
                  {
       img: proyecto11,
       title: "Tuneles",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Ingenieria Inversa"
       
     },
                  {
       img: proyecto12,
       title: "Planta Electro Winning y Acopio-Planta Sustrato-Planta Extraccion Por Solventes",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Scan To BIM"
       
     },
                      {
       img: proyecto13,
       title: "Espesadores",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Modelos 3d-Nube de Puntos"
       
     },
                       {
@@ -112,43 +112,43 @@ export default function ProjectsCarousel() {
                       {
       img: proyecto15,
       title: "Aeropuerto Artureo Merino Benites/Red de Incendios",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Modelos 3d-Manifold-Documentación"
       
     },
                       {
       img: proyecto16,
       title: "Proyectos Inmobiliarios",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Estructura"
       
     },
                       {
       img: proyecto17,
       title: "Aeropuerto Nuevo Pudahuel/Espigon C",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Coordinación de Cielos y soportación secundaria"
       
     },
                       {
       img: proyecto18,
       title: "Cafetal F/Costa Rica",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Revisión de modelos 3d-Documentación y Coordinación- As-built"
       
     },
                       {
       img: proyecto19,
       title: "HBLI/Hospital Base de Linares",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Revisión Climatización y Coordinación"
       
     },
                       {
       img: proyecto20,
       title: "Clinica Alemana Chicureo",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Modelo de Estructuras"
       
     },
                       {
       img: proyecto21,
       title: "Proyecto Habilitabilidad/Nodo Hilton-Hyatt",
-      desc: "Ingeniería de proyectos / Gestión BIM / Optimización."
+      desc: "Revisión de Proyectos,Ingenieria,Coordinación BIM"
       
     },
   ];
