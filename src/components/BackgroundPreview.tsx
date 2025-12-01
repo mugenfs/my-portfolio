@@ -144,10 +144,10 @@ export default function BackgroundPreview() {
       <div className="absolute top-10 w-full text-center leading-tight left-24">
         <h1 className="text-3xl font-bold mb-3">Felipe Andrés Saavedra Garrido</h1>
         <p className="mb-2">
-          Ingeniero En Proyectos Industriales / Coordinador BIM / Dibujante Técnico Industrial
+          Ingeniero En Proyectos Industriales | Coordinador BIM | Dibujante Técnico Industrial
         </p>
         <p className="mb-4">
-          📱 +56 9 8184 9159 (WhatsApp) · 📧 saavedra.felipe92.fs@gmail.com
+          📱 +56 9 8184 9159 (WhatsApp) | 📧 saavedra.felipe92.fs@gmail.com
         </p>
       </div>
 
@@ -164,51 +164,51 @@ export default function BackgroundPreview() {
         AUTODESK REVIT (MEP, STRUCTURE, ARQ) ⭐⭐⭐⭐⭐
           </div>
         <div className="flex items-center gap-2">
-        <img src="/assets/Project.png" alt="Project"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PROJECT ⭐⭐⭐⭐☆
+        <img src="/assets/Project.png" alt="Project"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PROJECT ⭐⭐⭐☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/navisworks.png" alt="navisworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> NAVISWORKS ⭐⭐⭐⭐⭐
+            <img src="/assets/navisworks.png" alt="navisworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> NAVISWORKS ⭐⭐⭐⭐☆
           </div>
           <div className="flex items-center gap-2">
             <img src="/assets/dynamo.png" alt="dynamo"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> DYNAMO ⭐⭐⭐⭐☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/grasshopper.png" alt="grasshopper"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> GRASSHOPPER ⭐⭐⭐⭐☆
+            <img src="/assets/grasshopper.png" alt="grasshopper"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> GRASSHOPPER ⭐⭐⭐☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Sketchup.png" alt="Sketchup"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SKETCHUP ⭐⭐⭐⭐☆
+            <img src="/assets/Sketchup.png" alt="Sketchup"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SKETCHUP ⭐⭐⭐☆☆
           </div>
           <div className="flex items-center gap-2">
             <img src="/assets/Office.png" alt="Office"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> OFFICE ⭐⭐⭐⭐⭐
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/FARO_Logo.png" alt="FARO_Logo"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SCENE ⭐⭐⭐⭐☆
+            <img src="/assets/FARO_Logo.png" alt="FARO_Logo"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SCENE ⭐⭐☆☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Realworks.jpeg" alt="Realworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> TRIMBLE REALWORKS ⭐⭐⭐⭐☆
+            <img src="/assets/Realworks.jpeg" alt="Realworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> TRIMBLE REALWORKS ⭐⭐☆☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/lumion.png" alt="lumion"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> LUMION ⭐⭐⭐⭐☆
+            <img src="/assets/lumion.png" alt="lumion"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> LUMION ⭐⭐⭐☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Potoshop.png" alt="Potoshop"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PHOTOSHOP ⭐⭐⭐⭐☆
+            <img src="/assets/Potoshop.png" alt="Potoshop"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PHOTOSHOP ⭐⭐⭐☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Visio.png" alt="Visio"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> VISIO ⭐⭐⭐⭐☆
+            <img src="/assets/Visio.png" alt="Visio"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> VISIO ⭐⭐☆☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Ilustrator.png" alt="Ilustrator"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> ADOBE ILLUSTRATOR ⭐⭐⭐☆
+            <img src="/assets/Ilustrator.png" alt="Ilustrator"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> ADOBE ILLUSTRATOR ⭐⭐☆☆☆
           </div>
           <div className="flex items-center gap-2">
             <img src="/assets/unreal engine.png" alt="unreal engine"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> UNREAL ENGINE ⭐⭐☆☆☆
           </div>
           <div className="flex items-center gap-2">
-            <img src="/assets/Inventor.png" alt="Inventor"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> AUTODESK INVENTOR ⭐⭐⭐⭐☆
+            <img src="/assets/Inventor.png" alt="Inventor"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> AUTODESK INVENTOR ⭐⭐⭐☆☆
           </div>
         </div>
       </div>
 
-      {/* EXPERIENCIA RECIENTE - LADO DERECHO */}
+      {/* EXPERIENCIA RECIENTE - LADO DERECHO */}☆
       <div className="absolute top-[145px] left-[45%] w-[62%] text-left leading-tight">
         <h2 className="text-xl font-semibold mb-2">Experiencia Reciente</h2>
         <div
