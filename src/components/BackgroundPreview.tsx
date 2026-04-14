@@ -7,11 +7,11 @@ export default function BackgroundPreview() {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const [openSections, setOpenSections] = useState({
-    skills: false,
+    skills: true,
     projects: true,
     experience: true,
     blogs: true,
-    contact: false
+    contact: true
   });
 
   const toggleSection = (section: keyof typeof openSections) => {
