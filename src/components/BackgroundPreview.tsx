@@ -1,20 +1,22 @@
-declare module "*.JPG";
-
 import { useEffect, useRef, useState } from "react";
 import ProjectsCarousel from "./ProjectsCarousel";
+import CalendarSection from "./CalendarSection";
 
-// Agrega aquí las rutas de tus nuevas imágenes
-const projectImages = [
-  "C:/Users/Felipe Saavedra/Downloads/my-portfolio/src/assets/project1.jpg",
-  "/images/project2.jpg",
-  "/images/project3.jpg",
-  "/images/project4.jpg",
-];
 
 export default function BackgroundPreview() {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const mouse = useRef({ x: 0, y: 0 });
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [openSections, setOpenSections] = useState({
+    skills: false,
+    projects: true,
+    experience: true,
+    blogs: true,
+    contact: false
+  });
+
+  const toggleSection = (section: keyof typeof openSections) => {
+    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+  };
 
   useEffect(() => {
     const canvas = ref.current;
@@ -25,15 +27,16 @@ export default function BackgroundPreview() {
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
 
-    const POINTS = Math.max(6, Math.floor((w * h) / 14000));
-    const MAX_DIST = 150;
-    const SPEED = 0.3;
+    const POINTS = Math.max(15, Math.floor((w * h) / 10000));
+    const MAX_DIST = 180;
+    const SPEED = 0.8;
 
     const points = Array.from({ length: POINTS }).map(() => ({
       x: Math.random() * w,
       y: Math.random() * h,
       vx: (Math.random() - 0.5) * SPEED,
       vy: (Math.random() - 0.5) * SPEED,
+      size: Math.random() * 2 + 1,
     }));
 
     function resize() {
@@ -54,53 +57,28 @@ export default function BackgroundPreview() {
     function tick() {
       rafId = requestAnimationFrame(tick);
 
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
       ctx.fillRect(0, 0, w, h);
 
       for (const p of points) {
-        p.x += p.vx + (mouse.current.x - w / 2) * 0.00002;
-        p.y += p.vy + (mouse.current.y - h / 2) * 0.00002;
+        p.x += p.vx + (mouse.current.x - w / 2) * 0.00005;
+        p.y += p.vy + (mouse.current.y - h / 2) * 0.00005;
 
-        if (p.x < 0) {
-          p.vx *= -1;
-          p.x = 0;
-        }
-        if (p.x > w) {
-          p.vx *= -1;
-          p.x = w;
-        }
-        if (p.y < 0) {
-          p.vy *= -1;
-          p.y = 0;
-        }
-        if (p.y > h) {
-          p.vy *= -1;
-          p.y = h;
-        }
+        if (p.x < 0) { p.vx *= -1; p.x = 0; }
+        if (p.x > w) { p.vx *= -1; p.x = w; }
+        if (p.y < 0) { p.vy *= -1; p.y = 0; }
+        if (p.y > h) { p.vy *= -1; p.y = h; }
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.9)";
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = "white";
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
         ctx.fill();
         ctx.shadowBlur = 0;
       }
 
-      ctx.lineWidth = 1.1;
-
-      for (const p of points) {
-        const dx = p.x - mouse.current.x;
-        const dy = p.y - mouse.current.y;
-        const d = Math.hypot(dx, dy);
-        if (d < MAX_DIST) {
-          ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, (1 - d / MAX_DIST) * 1.4)})`;
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.current.x, mouse.current.y);
-          ctx.stroke();
-        }
-      }
+      ctx.lineWidth = 1;
 
       for (let i = 0; i < points.length; i++) {
         for (let j = i + 1; j < points.length; j++) {
@@ -110,12 +88,25 @@ export default function BackgroundPreview() {
           const dy = a.y - b.y;
           const d = Math.hypot(dx, dy);
           if (d < MAX_DIST) {
-            ctx.strokeStyle = `rgba(255,255,255,${Math.max(0, (1 - d / MAX_DIST) * 1.4)})`;
+            ctx.strokeStyle = `rgba(100, 150, 255, ${Math.max(0, (1 - d / MAX_DIST) * 0.5)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.stroke();
           }
+        }
+      }
+
+      for (const p of points) {
+        const dx = p.x - mouse.current.x;
+        const dy = p.y - mouse.current.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 120) {
+          ctx.strokeStyle = `rgba(255, 255, 255, ${Math.max(0, (1 - d / 120) * 0.6)})`;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.current.x, mouse.current.y);
+          ctx.stroke();
         }
       }
     }
@@ -140,87 +131,84 @@ export default function BackgroundPreview() {
 
       <canvas ref={ref} className="absolute inset-0 w-full h-full" />
 
-      {/* CABECERA + EXPERIENCIA */}
-      <div className="absolute top-10 w-full text-center leading-tight left-24">
-        <h1 className="text-3xl font-bold mb-3">Felipe Andrés Saavedra Garrido</h1>
-        <p className="mb-2">
-          Ingeniero En Proyectos Industriales | Coordinador BIM | Dibujante Técnico Industrial
-        </p>
-        <p className="mb-4">
-          📱 +56 9 8184 9159 (WhatsApp) | 📧 saavedra.felipe92.fs@gmail.com
-        </p>
-      </div>
+      <div className="relative z-10 h-screen overflow-y-auto px-4 sm:px-8 lg:px-12 pt-24 pb-8">
+        <nav className="fixed top-0 left-0 right-0 z-20 bg-[#0b1220]/80 backdrop-blur-md border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm sm:text-xl">
+            <a href="#about-professional" className="hover:text-blue-300 transition-colors">Sobre Mí</a>
+            <a href="#skills" className="hover:text-blue-300 transition-colors">Habilidades</a>
+            <a href="#Proyectos Destacados" className="hover:text-blue-300 transition-colors">Proyectos Destacados</a>
+            <a href="#work-experiences" className="hover:text-blue-300 transition-colors">Experiencia</a>
+            <a href="#blogs" className="hover:text-blue-300 transition-colors">Blogs</a>
+            <a href="#contact-end" className="px-4 py-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">Datos de Contacto</a>
+          </div>
+        </nav>
 
-      {/* HABILIDADES - LADO IZQUIERDO */}
-      <div className="absolute left-10 top-[145px] text-left w-1/3">
-        <h2 className="text-xl font-semibold mb-3">Habilidades</h2>
-        <div className="flex flex-col gap-1 text-xs sm:text-sm items-start w-fit">
-        <div className="flex items-center gap-2">
-        <img src="/assets/autocad.png" alt="AutoCAD"  className="w-7 h-7 rounded object-contain bg-white p-0.025" />
-        AUTODESK AUTOCAD ⭐⭐⭐⭐⭐
-          </div>
-        <div className="flex items-center gap-2">
-        <img src="/assets/Revit.png" alt="Revit"  className="w-7 h-7 rounded object-contain bg-white p-0.025" />
-        AUTODESK REVIT (MEP, STRUCTURE, ARQ) ⭐⭐⭐⭐⭐
-          </div>
-        <div className="flex items-center gap-2">
-        <img src="/assets/Project.png" alt="Project"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PROJECT ⭐⭐⭐☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/navisworks.png" alt="navisworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> NAVISWORKS ⭐⭐⭐⭐☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/dynamo.png" alt="dynamo"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> DYNAMO ⭐⭐⭐⭐☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/grasshopper.png" alt="grasshopper"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> GRASSHOPPER ⭐⭐⭐☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Sketchup.png" alt="Sketchup"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SKETCHUP ⭐⭐⭐☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Office.png" alt="Office"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> OFFICE ⭐⭐⭐⭐⭐
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/FARO_Logo.png" alt="FARO_Logo"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> SCENE ⭐⭐☆☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Realworks.jpeg" alt="Realworks"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> TRIMBLE REALWORKS ⭐⭐☆☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/lumion.png" alt="lumion"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> LUMION ⭐⭐⭐☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Potoshop.png" alt="Potoshop"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> PHOTOSHOP ⭐⭐⭐☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Visio.png" alt="Visio"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> VISIO ⭐⭐☆☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Ilustrator.png" alt="Ilustrator"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> ADOBE ILLUSTRATOR ⭐⭐☆☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/unreal engine.png" alt="unreal engine"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> UNREAL ENGINE ⭐⭐☆☆☆
-          </div>
-          <div className="flex items-center gap-2">
-            <img src="/assets/Inventor.png" alt="Inventor"  className="w-7 h-7 rounded object-contain bg-white p-0.025" /> AUTODESK INVENTOR ⭐⭐⭐☆☆
-          </div>
-        </div>
-      </div>
+        <div className="max-w-7xl mx-auto space-y-8">
+          <section id="about-professional" className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg" style={{ scrollMarginTop: '80px' }}>
+            <div className="flex flex-col md:flex-row items-center md:items-stretch gap-6">
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-xl overflow-hidden border border-white/30 shadow-md flex-shrink-0">
+                <img src="/assets/unnamed (1).jpg" alt="Foto de perfil" className="w-full h-full object-cover" />
+              </div>
+              <div className="text-center md:text-left flex items-center">
+                <div>
+                  <h1 className="text-3xl font-bold mb-3">Felipe Andrés Saavedra Garrido</h1>
+                  <p className="mb-2">
+                    Ingeniero En Proyectos Industriales | Coordinador BIM | Dibujante Técnico Industrial
+                  </p>
+                  <p className="mb-2 text-sm leading-relaxed text-white/90 max-w-4xl">
+                    Ingeniero en Proyectos Industriales titulado el año 2015, con aptitudes para trabajar en equipos de trabajo, persona responsable, perseverante y con buena disposición al aprendizaje, comprometido con dar soluciones rápidas y concisas para el buen desarrollo de los proyectos. Disposición inmediata, gran manejo de software de diseño.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-      {/* EXPERIENCIA RECIENTE - LADO DERECHO */}☆
-      <div className="absolute top-[145px] left-[45%] w-[62%] text-left leading-tight">
-        <h2 className="text-xl font-semibold mb-2">Experiencia Reciente</h2>
-        <div
-          className="w-full max-w-3xl text-left overflow-hidden relative h-96"
-          id="expCarousel"
-        >
-          <div className="transition-transform duration-700 ease-in-out h-full" id="expInner">
-            <div id="expScroll" className="h-full overflow-y-auto p-4">
+          <section id="skills" className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg text-left" style={{ scrollMarginTop: '80px' }}>
+            <button onClick={() => toggleSection('skills')} className="w-full flex items-center justify-between hover:bg-white/10 rounded-lg p-2 -ml-2 transition-colors">
+              <h2 className="text-2xl font-bold">Habilidades</h2>
+              <svg className={`w-6 h-6 transition-transform ${openSections.skills ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+<div className={`overflow-hidden transition-all duration-300 ${openSections.skills ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-3 text-sm">
+                <div className="flex items-center gap-2"><img src="/assets/autocad.png" alt="AutoCAD" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> AUTODESK AUTOCAD ⭐⭐⭐⭐⭐</div>
+              <div className="flex items-center gap-2"><img src="/assets/Revit.png" alt="Revit" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> AUTODESK REVIT (MEP, STRUCTURE, ARQ) ⭐⭐⭐⭐⭐</div>
+              <div className="flex items-center gap-2"><img src="/assets/Project.png" alt="Project" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> PROJECT ⭐⭐⭐☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/navisworks.png" alt="Navisworks" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> NAVISWORKS ⭐⭐⭐⭐☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/dynamo.png" alt="Dynamo" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> DYNAMO ⭐⭐⭐⭐☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/grasshopper.png" alt="Grasshopper" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> GRASSHOPPER ⭐⭐⭐☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Sketchup.png" alt="SketchUp" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> SKETCHUP ⭐⭐⭐☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Office.png" alt="Office" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> OFFICE ⭐⭐⭐⭐⭐</div>
+              <div className="flex items-center gap-2"><img src="/assets/FARO_Logo.png" alt="FARO_Logo" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> SCENE ⭐⭐☆☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Realworks.jpeg" alt="Realworks" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> TRIMBLE REALWORKS ⭐⭐☆☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/lumion.png" alt="Lumion" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> LUMION ⭐⭐⭐☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Potoshop.png" alt="Photoshop" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> PHOTOSHOP ⭐⭐⭐☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Visio.png" alt="Visio" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> VISIO ⭐⭐☆☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Ilustrator.png" alt="Illustrator" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> ADOBE ILLUSTRATOR ⭐⭐☆☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/unreal engine.png" alt="Unreal Engine" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> UNREAL ENGINE ⭐⭐☆☆☆</div>
+              <div className="flex items-center gap-2"><img src="/assets/Inventor.png" alt="Inventor" className="w-7 h-7 rounded object-contain bg-white p-0.5" /> AUTODESK INVENTOR ⭐⭐⭐☆☆</div>
+              </div>
+            </div>
+          </section>
+
+          <ProjectsCarousel isOpen={openSections.projects} onToggle={() => toggleSection('projects')} />
+
+          <section id="work-experiences" className="w-full bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg text-left leading-tight" style={{ scrollMarginTop: '80px' }}>
+            <button onClick={() => toggleSection('experience')} className="w-full flex items-center justify-between hover:bg-white/10 rounded-lg p-2 -ml-2 transition-colors">
+              <h2 className="text-2xl font-bold">Experiencia</h2>
+              <svg className={`w-6 h-6 transition-transform ${openSections.experience ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${openSections.experience ? 'max-h-[3000px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+            <div className="w-full max-w-[980px] mx-auto text-left overflow-hidden relative h-[360px]" id="expCarousel">
+              <div className="transition-transform duration-700 ease-in-out h-full" id="expInner">
+                <div id="expScroll" className="h-full overflow-y-auto p-5 scroll-pr-00">
               {/* Alinea‑HPC 2025 */}
               <details className="mb-4 bg-white/40 backdrop-blur-md rounded-xl p-4 shadow cursor-pointer text-white">
                 <summary className="font-semibold text-lg">
-                  Modelador BIM — Alinea‑HPC, Freelance (05/2025 - 07/2025)
+                  Analista Oficina Técnica — Sacyr (05/2025 - 04/2026)
                 </summary>
                 <ul className="list-disc ml-6 mt-2 text-sm leading-snug">
                   <li>
@@ -230,6 +218,14 @@ export default function BackgroundPreview() {
                   <li>Reconexión sistemas HVAC.</li>
                   <li>Redimensionamiento de ductos a ductos de fabricación (Dynamo).</li>
                   <li>Reconexionado a terminales de aire (Dynamo), entre otras.</li>
+                  <li>
+                    <strong>Edificios Prefabricados</strong>
+                  </li>
+                  <li>Prefabricación modular|Area de servicio general y Atención de Emergencias</li>
+                  <li>Coordinación LOD 400–500</li>
+                  <li>Modelos para fabricación</li>
+                  <li>Automatización de producción (Dynamo)</li>
+                  <li>Integración diseño–obra</li>
                 </ul>
               </details>
 
@@ -606,15 +602,38 @@ export default function BackgroundPreview() {
               </details>
             </div>
           </div>
+</div>
+            </div>
+          </section>
+
+      <section id="blogs" className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg" style={{ scrollMarginTop: '80px' }}>
+            <button onClick={() => toggleSection('blogs')} className="w-full flex items-center justify-between hover:bg-white/10 rounded-lg p-2 -ml-2 transition-colors">
+              <h2 className="text-2xl font-bold">Blogs</h2>
+              <svg className={`w-6 h-6 transition-transform ${openSections.blogs ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${openSections.blogs ? 'max-h-[5000px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+            <CalendarSection />
+            </div>
+          </section>
+
+          <section id="contact-end" className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg text-center" style={{ scrollMarginTop: '80px' }}>
+            <button onClick={() => toggleSection('contact')} className="w-full flex items-center justify-between hover:bg-white/10 rounded-lg p-2 -ml-2 transition-colors mb-3">
+              <h2 className="text-2xl font-bold">Datos de Contacto</h2>
+              <svg className={`w-6 h-6 transition-transform ${openSections.contact ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${openSections.contact ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <a href="https://www.google.com/maps/search/Pudeto+6631,+La+Florida,+Santiago" target="_blank" rel="noopener noreferrer" className="mb-1 block hover:text-yellow-300 transition-colors">📍 Pudeto 6631, La Florida, Santiago</a>
+              <a href="https://wa.me/56981849159" target="_blank" rel="noopener noreferrer" className="mb-1 block hover:text-yellow-300 transition-colors">📱 +56 9 8184 9159 (WhatsApp)</a>
+              <a href="mailto:saavedra.felipe92.fs@gmail.com" className="block hover:text-yellow-300 transition-colors">📧 saavedra.felipe92.fs@gmail.com</a>
+            </div>
+          </section>
+
         </div>
       </div>
-
-      {/* PROYECTOS DESTACADOS */}
-      <div className="absolute top-[525px] left-10 right-10">
-        <ProjectsCarousel />
-      </div>
-
-
     </div>
   );
 }
