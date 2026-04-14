@@ -7,6 +7,7 @@ export default function BackgroundPreview() {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const [openSections, setOpenSections] = useState({
+    about: true,
     skills: true,
     projects: true,
     experience: true,
@@ -145,19 +146,26 @@ export default function BackgroundPreview() {
 
         <div className="max-w-7xl mx-auto space-y-8">
           <section id="about-professional" className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg" style={{ scrollMarginTop: '80px' }}>
-            <div className="flex flex-col md:flex-row items-center md:items-stretch gap-6">
-              <div className="w-40 h-40 md:w-48 md:h-48 rounded-xl overflow-hidden border border-white/30 shadow-md flex-shrink-0">
-                <img src="/assets/unnamed (1).jpg" alt="Foto de perfil" className="w-full h-full object-cover" />
-              </div>
-              <div className="text-center md:text-left flex items-center">
-                <div>
-                  <h1 className="text-3xl font-bold mb-3">Felipe Andrés Saavedra Garrido</h1>
-                  <p className="mb-2">
-                    Ingeniero En Proyectos Industriales | Coordinador BIM | Dibujante Técnico Industrial
-                  </p>
-                  <p className="mb-2 text-sm leading-relaxed text-white/90 max-w-4xl">
-                    Ingeniero en Proyectos Industriales titulado el año 2015, con aptitudes para trabajar en equipos de trabajo, persona responsable, perseverante y con buena disposición al aprendizaje, comprometido con dar soluciones rápidas y concisas para el buen desarrollo de los proyectos. Disposición inmediata, gran manejo de software de diseño.
-                  </p>
+            <button onClick={() => toggleSection('about')} className="w-full flex items-center justify-between hover:bg-white/10 rounded-lg p-2 -ml-2 transition-colors">
+              <h1 className="text-3xl font-bold">Felipe Andrés Saavedra Garrido</h1>
+              <svg className={`w-6 h-6 transition-transform ${openSections.about ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${openSections.about ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+              <div className="flex flex-col md:flex-row items-center md:items-stretch gap-6">
+                <div className="w-40 h-40 md:w-48 md:h-48 rounded-xl overflow-hidden border border-white/30 shadow-md flex-shrink-0">
+                  <img src="/assets/unnamed (1).jpg" alt="Foto de perfil" className="w-full h-full object-cover" />
+                </div>
+                <div className="text-center md:text-left flex items-center">
+                  <div>
+                    <p className="mb-2">
+                      Ingeniero En Proyectos Industriales | Coordinador BIM | Dibujante Técnico Industrial
+                    </p>
+                    <p className="mb-2 text-sm leading-relaxed text-white/90 max-w-4xl">
+                      Ingeniero en Proyectos Industriales titulado el año 2015, con aptitudes para trabajar en equipos de trabajo, persona responsable, perseverante y con buena disposición al aprendizaje, comprometido con dar soluciones rápidas y concisas para el buen desarrollo de los proyectos. Disposición inmediata, gran manejo de software de diseño.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
