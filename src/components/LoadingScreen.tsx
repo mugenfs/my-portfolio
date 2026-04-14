@@ -21,8 +21,6 @@ export default function LoadingScreen({ fadeOut = false }: LoadingScreenProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
           <div className="w-2 h-2 bg-cyan-500 rounded-full animate-[dotPulse_1s_infinite]" style={{ animationDelay: '0s' }} />
           <div className="w-2 h-2 bg-blue-500 rounded-full animate-[dotPulse_1s_infinite]" style={{ animationDelay: '0.2s' }} />
@@ -34,12 +32,6 @@ export default function LoadingScreen({ fadeOut = false }: LoadingScreenProps) {
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
-        }
-        @keyframes dots {
-          0%, 20% { content: ''; }
-          40% { content: '.'; }
-          60% { content: '..'; }
-          80%, 100% { content: '...'; }
         }
         @keyframes dotPulse {
           0%, 100% { transform: scale(1); opacity: 0.7; }
