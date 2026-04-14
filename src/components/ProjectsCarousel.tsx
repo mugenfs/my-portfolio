@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 interface ProjectsCarouselProps {
   isOpen?: boolean;
