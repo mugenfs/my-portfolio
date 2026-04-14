@@ -22,10 +22,6 @@ export default function LoadingScreen({ fadeOut = false }: LoadingScreenProps) {
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-white text-4xl font-semibold tracking-wide">
-            Cargando<span className="animate-[dots_1.5s_infinite]">...</span>
-          </span>
-        </div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
           <div className="w-2 h-2 bg-cyan-500 rounded-full animate-[dotPulse_1s_infinite]" style={{ animationDelay: '0s' }} />
