@@ -13,6 +13,8 @@ interface LinkedInPost {
 const LINKEDIN_PROFILE = "https://www.linkedin.com/in/felipe-saavedra-coordinadorbim-ingenieroproyectosindustriales/";
 
 const linkedinPosts: LinkedInPost[] = [
+  { date: 25, month: 9, year: 2026, title: "Creación de Familias Paramétricas / Automate", url: "https://www.linkedin.com/feed/update/urn:li:activity:7509222697239990274/", color: "bg-teal-500", description: "Creación y automatización de familias paramétricas en Revit." },
+  { date: 1, month: 9, year: 2026, title: "Diplomado Data Science - ML, IA y Deep Learning", url: "https://www.linkedin.com/feed/update/urn:li:activity:7500658745409028096/", color: "bg-violet-600", description: "Cierre del Diplomado en Data Science, Machine Learning, Inteligencia Artificial y Deep Learning (PUCV), ampliando conocimientos para aplicar nuevas herramientas en proyectos de ingeniería." },
   { date: 15, month: 11, year: 2025, title: "Place Diffusors - Dynamo", url: "https://www.linkedin.com/posts/activity-7396646840537919488-tT3g", color: "bg-blue-500", description: "Automatización de placement de difusores en modelos Revit usando scripts de Dynamo para proyectos HVAC." },
   { date: 20, month: 11, year: 2025, title: "Rutinas MEP - Conduit", url: "https://www.linkedin.com/posts/activity-7396248846084898817-V6Jm", color: "bg-green-500", description: "Desarrollo de rutinas para creación automática de conductos y sistemas MEP en proyectos de infraestructura." },
   { date: 18, month: 8, year: 2025, title: "Phasing 4D - Platform Service", url: "https://www.linkedin.com/posts/activity-7363377179629420545-s7vA", color: "bg-purple-500", description: "Implementación de fases 4D para simulación de construcción usando Autodesk Platform Service y ACC." },
