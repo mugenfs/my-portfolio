@@ -1,0 +1,15 @@
+# Dependencias y build (Netlify compila la página en cada deploy)
+node_modules/
+dist/
+.vite/
+
+# Variables de entorno / credenciales
+.env
+.env.*
+
+# Logs y archivos locales
+*.log
+*.backup.*
+TODO.md
+.DS_Store
+Thumbs.db
