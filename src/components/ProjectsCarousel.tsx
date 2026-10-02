@@ -297,6 +297,37 @@ export default function ProjectsCarousel({ isOpen = true, onToggle }: ProjectsCa
               />
             ))}
           </div>
+
+          {/* CONSTRUCCIÓN VIRTUAL - PROYECTOS EXTERNOS */}
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-3 text-left">Construcción Virtual</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a
+                href="https://edificios-patrimoniales.netlify.app/iglesia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col justify-end h-40 rounded-xl shadow-lg overflow-hidden p-4 bg-gradient-to-br from-amber-700/80 to-orange-950/90 hover:from-amber-600/90 hover:to-orange-900/95 transition-colors"
+              >
+                <h4 className="text-lg font-bold">Iglesia de Achao</h4>
+                <p className="text-sm opacity-90">Chiloé · Animación de construcción BIM</p>
+                <span className="mt-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  Ver animación →
+                </span>
+              </a>
+              <a
+                href="https://edificios-patrimoniales.netlify.app/templo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col justify-end h-40 rounded-xl shadow-lg overflow-hidden p-4 bg-gradient-to-br from-rose-800/80 to-red-950/90 hover:from-rose-700/90 hover:to-red-900/95 transition-colors"
+              >
+                <h4 className="text-lg font-bold">Templo Chuzu</h4>
+                <p className="text-sm opacity-90">Main Hall · Animación de construcción BIM</p>
+                <span className="mt-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  Ver animación →
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
