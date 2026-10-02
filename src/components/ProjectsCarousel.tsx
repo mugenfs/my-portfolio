@@ -36,6 +36,8 @@ import proyecto28 from "../assets/proyecto28.jpeg";
 import proyecto29 from "../assets/proyecto29.jpeg";
 import proyecto30 from "../assets/proyecto30.png";
 import PointCloud from "../assets/PointCloud.jpg";
+import iglesiaAchao from "../assets/iglesia_achao.png";
+import temploChuzu from "../assets/templo_chuzu.png";
 
 
 export default function ProjectsCarousel({ isOpen = true, onToggle }: ProjectsCarouselProps) {
@@ -306,25 +308,41 @@ export default function ProjectsCarousel({ isOpen = true, onToggle }: ProjectsCa
                 href="https://edificios-patrimoniales.netlify.app/iglesia/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col justify-end h-40 rounded-xl shadow-lg overflow-hidden p-4 bg-gradient-to-br from-amber-700/80 to-orange-950/90 hover:from-amber-600/90 hover:to-orange-900/95 transition-colors"
+                className="group relative flex flex-col justify-end h-80 rounded-xl shadow-lg overflow-hidden border border-white/15 hover:border-white/35 transition-colors"
               >
-                <h4 className="text-lg font-bold">Iglesia de Achao</h4>
-                <p className="text-sm opacity-90">Chiloé · Animación de construcción BIM</p>
-                <span className="mt-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Ver animación →
-                </span>
+                <img
+                  src={iglesiaAchao}
+                  alt="Iglesia de Achao"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                <div className="relative m-3 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow-lg p-3 transition-colors group-hover:bg-white/15">
+                  <h4 className="text-lg font-bold">Iglesia de Achao</h4>
+                  <p className="text-sm text-white/80">Chiloé · Animación de construcción BIM</p>
+                  <span className="mt-1 inline-block text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    Ver animación →
+                  </span>
+                </div>
               </a>
               <a
                 href="https://edificios-patrimoniales.netlify.app/templo/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col justify-end h-40 rounded-xl shadow-lg overflow-hidden p-4 bg-gradient-to-br from-rose-800/80 to-red-950/90 hover:from-rose-700/90 hover:to-red-900/95 transition-colors"
+                className="group relative flex flex-col justify-end h-80 rounded-xl shadow-lg overflow-hidden border border-white/15 hover:border-white/35 transition-colors"
               >
-                <h4 className="text-lg font-bold">Templo Chuzu</h4>
-                <p className="text-sm opacity-90">Main Hall · Animación de construcción BIM</p>
-                <span className="mt-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                  Ver animación →
-                </span>
+                <img
+                  src={temploChuzu}
+                  alt="Templo Chuzu"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                <div className="relative m-3 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow-lg p-3 transition-colors group-hover:bg-white/15">
+                  <h4 className="text-lg font-bold">Templo Chuzu</h4>
+                  <p className="text-sm text-white/80">Main Hall · Animación de construcción BIM</p>
+                  <span className="mt-1 inline-block text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    Ver animación →
+                  </span>
+                </div>
               </a>
             </div>
           </div>
